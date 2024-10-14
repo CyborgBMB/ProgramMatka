@@ -59,3 +59,29 @@ button:hover {
 #lista-samochodow button:hover {
     background-color: #c82333;
 }
+/* style.css */
+.parking {
+    margin-top: 20px;
+}
+
+#miejsca-parkingowe {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.miejsce {
+    width: 60px;
+    height: 60px;
+    background-color: #28a745; /* Kolor dla wolnego miejsca */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-weight: bold;
+    border-radius: 8px;
+}
+
+.miejsce.zajete {
+    background-color: #dc3545; /* Kolor dla zajętego miejsca */
+}
