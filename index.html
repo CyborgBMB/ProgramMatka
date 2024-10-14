@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zarządzanie Parkingiem</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Zarządzanie Parkingiem</h1>
+        
+        <div id="parking-info">
+            <p>Wolne miejsca: <span id="wolne-miejsca"></span></p>
+            <p>Zajęte miejsca: <span id="zajete-miejsca"></span></p>
+        </div>
+
+        <div class="form">
+            <h2>Dodaj samochód</h2>
+            <input type="text" id="numer-rejestracyjny" placeholder="Wpisz numer rejestracyjny">
+            <button id="dodaj-samochod">Dodaj</button>
+        </div>
+
+        <div class="list">
+            <h2>Lista samochodów</h2>
+            <ul id="lista-samochodow"></ul>
+        </div>
+    </div>
+    
+    <script src="app.js"></script>
+</body>
+</html>
