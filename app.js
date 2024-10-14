@@ -20,6 +20,7 @@ document.getElementById('dodaj-samochod').addEventListener('click', () => {
     zajeteMiejsca++;
     aktualizujParkingInfo();
     aktualizujListeSamochodow();
+    aktualizujMiejscaParkingowe();  // Nowa funkcja do wizualizacji miejsc
 
     document.getElementById('numer-rejestracyjny').value = '';
 });
@@ -60,6 +61,7 @@ function usunSamochod(index) {
     zajeteMiejsca--;
     aktualizujParkingInfo();
     aktualizujListeSamochodow();
+    aktualizujMiejscaParkingowe();  // Aktualizacja wizualizacji miejsc
 }
 
 function obliczOplate(czasParkowania) {
@@ -67,5 +69,38 @@ function obliczOplate(czasParkowania) {
     return czasParkowania * stawka;
 }
 
+function aktualizujMiejscaParkingowe() {
+    const miejscaContainer = document.getElementById('miejsca-parkingowe');
+    miejscaContainer.innerHTML = '';
+
+    for (let i = 1; i <= maxMiejsc; i++) {
+        const miejsce = document.createElement('div');
+        miejsce.classList.add('miejsce');
+
+        if (i <= zajeteMiejsca) {
+            miejsce.classList.add('zajete');
+            miejsce.textContent = 'Zajęte';
+        } else {
+            miejsce.textContent = 'Wolne';
+        }
+
+        miejscaContainer.appendChild(miejsce);
+    }
+}
+
+// Wyszukiwanie samochodu
+document.getElementById('wyszukaj-samochod').addEventListener('click', () => {
+    const numerSzukany = document.getElementById('wyszukaj-numer').value.trim();
+    const znalezionySamochod = samochody.find(samochod => samochod.numer === numerSzukany);
+
+    if (znalezionySamochod) {
+        const czasParkowania = Math.floor((new Date() - znalezionySamochod.czasPrzyjazdu) / (1000 * 60));
+        document.getElementById('wynik-wyszukiwania').textContent = `Samochód ${numerSzukany} jest zaparkowany przez ${czasParkowania} minut.`;
+    } else {
+        document.getElementById('wynik-wyszukiwania').textContent = 'Samochód nie znaleziony.';
+    }
+});
+
 // Inicjalizacja parkingu
 aktualizujParkingInfo();
+aktualizujMiejscaParkingowe();  // Dodanie wizualizacji przy starcie
